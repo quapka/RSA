@@ -11,4 +11,8 @@
 //! We do NOT recommend using it to implement any algorithm which has not
 //! received extensive peer review by cryptographers.
 
+pub use crate::algorithms::pad::{uint_to_be_pad, uint_to_zeroizing_be_pad};
+pub use crate::algorithms::pkcs1v15::{
+    pkcs1v15_generate_prefix, pkcs1v15_sign_pad, pkcs1v15_sign_unpad,
+};
 pub use crate::algorithms::rsa::{rsa_decrypt, rsa_decrypt_and_check, rsa_encrypt};

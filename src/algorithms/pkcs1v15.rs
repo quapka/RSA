@@ -113,7 +113,7 @@ fn decrypt_inner(em: Vec<u8>, k: usize) -> Result<(u8, Vec<u8>, u32)> {
 }
 
 #[inline]
-pub(crate) fn pkcs1v15_sign_pad(prefix: &[u8], hashed: &[u8], k: usize) -> Result<Vec<u8>> {
+pub fn pkcs1v15_sign_pad(prefix: &[u8], hashed: &[u8], k: usize) -> Result<Vec<u8>> {
     let hash_len = hashed.len();
     let t_len = prefix.len() + hashed.len();
     if k < t_len + 11 {
@@ -132,7 +132,7 @@ pub(crate) fn pkcs1v15_sign_pad(prefix: &[u8], hashed: &[u8], k: usize) -> Resul
 }
 
 #[inline]
-pub(crate) fn pkcs1v15_sign_unpad(prefix: &[u8], hashed: &[u8], em: &[u8], k: usize) -> Result<()> {
+pub fn pkcs1v15_sign_unpad(prefix: &[u8], hashed: &[u8], em: &[u8], k: usize) -> Result<()> {
     let hash_len = hashed.len();
     let t_len = prefix.len() + hashed.len();
     if k < t_len + 11 {
@@ -159,7 +159,7 @@ pub(crate) fn pkcs1v15_sign_unpad(prefix: &[u8], hashed: &[u8], em: &[u8], k: us
 
 /// prefix = 0x30 <oid_len + 8 + digest_len> 0x30 <oid_len + 4> 0x06 <oid_len> oid 0x05 0x00 0x04 <digest_len>
 #[inline]
-pub(crate) fn pkcs1v15_generate_prefix<D>() -> Vec<u8>
+pub fn pkcs1v15_generate_prefix<D>() -> Vec<u8>
 where
     D: Digest + AssociatedOid,
 {
